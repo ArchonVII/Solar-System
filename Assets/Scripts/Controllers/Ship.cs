@@ -148,7 +148,7 @@ public class Ship : GravityObject {
         shipIsPiloted = false;
         pilot.transform.position = pilotSeatPoint.position;
         pilot.transform.rotation = pilotSeatPoint.rotation;
-        pilot.Rigidbody.velocity = rb.velocity;
+        pilot.Rigidbody.linearVelocity = rb.linearVelocity;
         pilot.gameObject.SetActive (true);
         pilot.ExitFromSpaceship ();
     }
@@ -166,7 +166,7 @@ public class Ship : GravityObject {
     }
 
     public void SetVelocity (Vector3 velocity) {
-        rb.velocity = velocity;
+        rb.linearVelocity = velocity;
     }
 
     public bool ShowHUD {
