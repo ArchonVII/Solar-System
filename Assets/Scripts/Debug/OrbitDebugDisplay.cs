@@ -72,12 +72,14 @@ public class OrbitDebugDisplay : MonoBehaviour {
 
             if (useThickLines) {
                 var lineRenderer = bodies[bodyIndex].gameObject.GetComponentInChildren<LineRenderer> ();
-                lineRenderer.enabled = true;
-                lineRenderer.positionCount = drawPoints[bodyIndex].Length;
-                lineRenderer.SetPositions (drawPoints[bodyIndex]);
-                lineRenderer.startColor = pathColour;
-                lineRenderer.endColor = pathColour;
-                lineRenderer.widthMultiplier = width;
+                if (lineRenderer != null) {
+                    lineRenderer.enabled = true;
+                    lineRenderer.positionCount = drawPoints[bodyIndex].Length;
+                    lineRenderer.SetPositions (drawPoints[bodyIndex]);
+                    lineRenderer.startColor = pathColour;
+                    lineRenderer.endColor = pathColour;
+                    lineRenderer.widthMultiplier = width;
+                }
             } else {
                 for (int i = 0; i < drawPoints[bodyIndex].Length - 1; i++) {
                     Debug.DrawLine (drawPoints[bodyIndex][i], drawPoints[bodyIndex][i + 1], pathColour);
@@ -112,7 +114,9 @@ public class OrbitDebugDisplay : MonoBehaviour {
         // Draw paths
         for (int bodyIndex = 0; bodyIndex < bodies.Length; bodyIndex++) {
             var lineRenderer = bodies[bodyIndex].gameObject.GetComponentInChildren<LineRenderer> ();
-            lineRenderer.positionCount = 0;
+            if (lineRenderer != null) {
+                lineRenderer.positionCount = 0;
+            }
         }
     }
 
